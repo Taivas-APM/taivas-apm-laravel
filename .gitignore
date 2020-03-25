@@ -2,5 +2,6 @@
 /laravel
 /node_modules
 /phpunit.xml
+/.idea
 composer.lock
 .phpunit.result.cache
