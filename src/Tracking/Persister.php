@@ -4,8 +4,10 @@ namespace TaivasAPM\Tracking;
 
 use Illuminate\Support\Carbon;
 
-class Persister {
-    public function persist(Request $request) {
+class Persister
+{
+    public function persist(Request $request)
+    {
         $requestModel = new \TaivasAPM\Tracking\Models\Request();
         $requestModel->url = $request->getUrl();
         $requestModel->started_at = Carbon::createFromFormat('U.v', $request->getStartedAt() / 1000);

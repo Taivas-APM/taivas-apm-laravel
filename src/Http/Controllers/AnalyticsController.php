@@ -2,18 +2,19 @@
 
 namespace TaivasAPM\Http\Controllers;
 
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Response;
 use TaivasAPM\Tracking\Analytics\LastRequests;
 use TaivasAPM\Tracking\Analytics\LongestRequests;
 use TaivasAPM\Tracking\Analytics\RecentRequests;
-use Illuminate\Http\JsonResponse;
 
 class AnalyticsController extends Controller
 {
     /**
      * @return JsonResponse
      */
-    public function recentRequests() {
+    public function recentRequests()
+    {
         return Response::json([
             'recentRequests' => (new RecentRequests())->getData(),
         ]);
@@ -22,7 +23,8 @@ class AnalyticsController extends Controller
     /**
      * @return JsonResponse
      */
-    public function lastRequests() {
+    public function lastRequests()
+    {
         return Response::json([
             'lastRequests' => (new LastRequests())->getData(),
         ]);
@@ -31,7 +33,8 @@ class AnalyticsController extends Controller
     /**
      * @return JsonResponse
      */
-    public function longestRequests() {
+    public function longestRequests()
+    {
         return Response::json([
             'longestRequests' => (new LongestRequests())->getData(),
         ]);

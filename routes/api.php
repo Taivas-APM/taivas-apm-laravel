@@ -8,7 +8,7 @@ use TaivasAPM\Http\Middleware\Authenticate;
 // Auth routes
 Route::post('/auth/login', 'AuthController@login')->name('taivasapm.auth.login');
 
-Route::group(['middleware' => Authenticate::class], function() {
+Route::group(['middleware' => Authenticate::class], function () {
     // Analytics routes
     Route::get('/analytics/recent-requests', 'AnalyticsController@recentRequests')->name('taivasapm.analytics.recent-requests');
     Route::get('/analytics/last-requests', 'AnalyticsController@lastRequests')->name('taivasapm.analytics.last-requests');

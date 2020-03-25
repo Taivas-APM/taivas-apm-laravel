@@ -25,19 +25,19 @@ class Authenticate
     public function handle($request, $next)
     {
         $token = $this->getToken($request);
-        if(!$token) {
+        if (! $token) {
             return abort(403, 'Could not get token from the request');
         }
 
         $isValid = $this->tokenIsValid($token);
 
-        if(!$isValid) {
+        if (! $isValid) {
             return abort(403, 'Your token is not valid');
         }
 
         $user = $this->getUser($token);
 
-        if(!$user) {
+        if (! $user) {
             return abort(403, 'Could not get your user object');
         }
 
@@ -56,7 +56,6 @@ class Authenticate
                 return (new Parser())->parse((string) $token);
             }
         }
-        return null;
     }
 
     /**
@@ -68,12 +67,12 @@ class Authenticate
         $validation = new ValidationData();
         $validation->setIssuer('https://taivas.io');
 
-        if(!$token->validate($validation)) {
+        if (! $token->validate($validation)) {
             return false;
         }
 
         $signer = new Sha256();
-        if(!$token->verify($signer, config('taivasapm.secret'))) {
+        if (! $token->verify($signer, config('taivasapm.secret'))) {
             return false;
         }
 
@@ -86,11 +85,12 @@ class Authenticate
      */
     private function getUser($token)
     {
-        $providerName = config('auth.guards.' . TaivasAPM::getGuard() . '.provider');
+        $providerName = config('auth.guards.'.TaivasAPM::getGuard().'.provider');
         /** @var AuthManager $authManager */
         $authManager = app('auth');
         $userProvider = $authManager->createUserProvider($providerName);
         $user = $userProvider->retrieveById($token->getClaim('sub'));
+
         return $user;
     }
 }

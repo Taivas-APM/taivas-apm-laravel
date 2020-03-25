@@ -8,7 +8,7 @@ use Illuminate\Contracts\Foundation\Application;
 class TrackerMiddleware
 {
     /**
-     * The Laravel Application
+     * The Laravel Application.
      */
     protected $app;
 
@@ -31,7 +31,7 @@ class TrackerMiddleware
     {
         /** @var Tracker $tracker */
         $tracker = $this->app['tracker'];
-        if($tracker->shouldTrack($request)) {
+        if ($tracker->shouldTrack($request)) {
             $tracker->start($request);
         }
 
@@ -41,10 +41,11 @@ class TrackerMiddleware
     /**
      * @param \Illuminate\Http\Request $request
      */
-    public function terminate($request) {
+    public function terminate($request)
+    {
         /** @var Tracker $tracker */
         $tracker = $this->app['tracker'];
-        if($tracker->shouldTrack($request)) {
+        if ($tracker->shouldTrack($request)) {
             $tracker->stop();
             $tracker->logDBQueries();
 

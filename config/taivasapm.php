@@ -21,11 +21,11 @@ return [
     'secret' => env('JWT_SECRET'),
 
     'api' => [
-        'prefix' => 'taivas'
+        'prefix' => 'taivas',
     ],
 
     'auth' => [
         'guard' => null, // This defaults to auth.defaults.guard, you can set a specific guard here if you like
         'identifier' => 'email', // If your authentication guard uses a different column for identifying the user you can specify it here
-    ]
+    ],
 ];

@@ -4,7 +4,6 @@ namespace TaivasAPM;
 
 use Closure;
 use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Request;
 
 class TaivasAPM
@@ -67,9 +66,10 @@ class TaivasAPM
     public static function getGuard()
     {
         $guard = config('taivasapm.auth.guard');
-        if(!$guard) {
+        if (! $guard) {
             $guard = config('auth.defaults.guard');
         }
+
         return $guard;
     }
 }
