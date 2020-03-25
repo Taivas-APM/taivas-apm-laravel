@@ -3,6 +3,8 @@
 namespace TaivasAPM;
 
 use Closure;
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Request;
 
 class TaivasAPM
@@ -24,14 +26,14 @@ class TaivasAPM
     /**
      * Determine if the given request can access Taivas APM.
      *
-     * @param  Request  $request
+     * @param  Authenticatable  $user
      * @return bool
      */
-    public static function check($request)
+    public static function check($user)
     {
         return (static::$authUsing ?: function () {
             return app()->environment('local');
-        })($request);
+        })($user);
     }
 
     /**
@@ -57,5 +59,17 @@ class TaivasAPM
         static::$runsMigrations = false;
 
         return new static;
+    }
+
+    /**
+     * @return string
+     */
+    public static function getGuard()
+    {
+        $guard = config('taivasapm.auth.guard');
+        if(!$guard) {
+            $guard = config('auth.defaults.guard');
+        }
+        return $guard;
     }
 }
