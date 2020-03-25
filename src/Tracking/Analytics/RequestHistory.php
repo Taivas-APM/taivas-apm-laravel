@@ -3,11 +3,12 @@
 namespace TaivasAPM\Tracking\Analytics;
 
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use TaivasAPM\Tracking\Models\Request;
-use Illuminate\Support\Carbon;
 
-class RequestHistory {
+class RequestHistory
+{
     private $days = 30;
     private $requestId;
 
@@ -16,7 +17,8 @@ class RequestHistory {
         $this->requestId = $requestId;
     }
 
-    public function getData() {
+    public function getData()
+    {
         $defaultFields = [
             'started_at_date' => 0,
             'request_duration_avg' => 0,
@@ -35,9 +37,9 @@ class RequestHistory {
             ->keyBy('started_at_date');
 
         $now = Carbon::now()->subDays($this->days);
-        for($i = 0;$i < $this->days - 1; $i++) {
-            $date = $now->format("Y-m-d");
-            if(!$data->has($date)) {
+        for ($i = 0; $i < $this->days - 1; $i++) {
+            $date = $now->format('Y-m-d');
+            if (! $data->has($date)) {
                 $entry = $defaultFields;
                 $entry['started_at_date'] = $date;
                 $data->put($date, $entry);
@@ -45,6 +47,7 @@ class RequestHistory {
             $now->addDay();
         }
         $data = $data->sortBy('started_at_date');
+
         return $data;
     }
 

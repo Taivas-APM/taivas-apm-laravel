@@ -4,7 +4,6 @@ namespace TaivasAPM;
 
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
-use TaivasAPM\TaivasAPM;
 
 class TaivasAPMApplicationServiceProvider extends ServiceProvider
 {

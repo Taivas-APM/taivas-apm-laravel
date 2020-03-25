@@ -8,12 +8,12 @@ use Illuminate\Support\Facades\Hash;
 /**
  * This is a data object which holds information about a request
  * and provides some functionality for extracting relevant
- * information from the request
+ * information from the request.
  *
  * Class Request
- * @package TaivasAPM\Tracking
  */
-class Request {
+class Request
+{
     private $url = null;
     private $started_at = null;
     private $stopped_at = null;
@@ -50,7 +50,6 @@ class Request {
     public function setStartedAt($started_at): void
     {
         $this->started_at = $started_at;
-
     }
 
     /**
@@ -102,51 +101,59 @@ class Request {
     }
 
     /**
-     * Returns the amount of milliseconds the total request took
+     * Returns the amount of milliseconds the total request took.
      *
      * @return float|null
      */
-    public function getRequestDuration() {
-        if(!$this->started_at || !$this->stopped_at) {
-            return null;
+    public function getRequestDuration()
+    {
+        if (! $this->started_at || ! $this->stopped_at) {
+            return;
         }
+
         return $this->stopped_at - $this->started_at;
     }
 
     /**
-     * Returns the amount of milliseconds the database queries took
+     * Returns the amount of milliseconds the database queries took.
      *
      * @return float|null
      */
-    public function getDBDuration() {
-        if($this->queries === null) {
-            return null;
+    public function getDBDuration()
+    {
+        if ($this->queries === null) {
+            return;
         }
+
         return collect($this->queries)->sum('time');
     }
 
     /**
-     * Returns the amount queries which were executed
+     * Returns the amount queries which were executed.
      *
      * @return float|null
      */
-    public function getDBCount() {
-        if($this->queries === null) {
-            return null;
+    public function getDBCount()
+    {
+        if ($this->queries === null) {
+            return;
         }
+
         return collect($this->queries)->count();
     }
 
     /**
-     * Returns a collection of all db queries without their bindings
+     * Returns a collection of all db queries without their bindings.
      *
      * @return Collection|null
      */
-    public function getSanitizedDBQueries() {
-        if($this->queries === null) {
-            return null;
+    public function getSanitizedDBQueries()
+    {
+        if ($this->queries === null) {
+            return;
         }
-        return collect($this->queries)->transform(function($query) {
+
+        return collect($this->queries)->transform(function ($query) {
             return [
                 'query' => $query['query'],
                 'time' => $query['time'],
@@ -155,7 +162,8 @@ class Request {
         });
     }
 
-    public function toArray() {
+    public function toArray()
+    {
         return [
             'url' => $this->url,
             'started_at' => $this->started_at,

@@ -28,7 +28,7 @@ class TaivasAPMServiceProvider extends ServiceProvider
 
     public function register()
     {
-        if (!defined('TAIVASAPM_PATH')) {
+        if (! defined('TAIVASAPM_PATH')) {
             define('TAIVASAPM_PATH', realpath(__DIR__.'/../'));
         }
 
@@ -37,15 +37,18 @@ class TaivasAPMServiceProvider extends ServiceProvider
 
         $this->app->singleton('tracker', function ($app) {
             $tracker = new Tracker();
+
             return $tracker;
         });
         $this->app->singleton('tracker.persister', function ($app) {
             $persister = new Persister();
+
             return $persister;
         });
     }
 
-    private function registerMiddleware() {
+    private function registerMiddleware()
+    {
         $this->app[Kernel::class]
             ->prependMiddleware(TrackerMiddleware::class);
     }
@@ -78,7 +81,7 @@ class TaivasAPMServiceProvider extends ServiceProvider
     }
 
     /**
-     * Setup the configuration for Taivas APM
+     * Setup the configuration for Taivas APM.
      *
      * @return void
      */
