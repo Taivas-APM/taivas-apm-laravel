@@ -16,7 +16,7 @@ use TaivasAPM\Tracking\Models\Request;
  *          ...
  *      ],
  *      ...
- * ]
+ * ].
  */
 class RequestHistory
 {
