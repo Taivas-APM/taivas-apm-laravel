@@ -15,6 +15,7 @@ Route::group(['middleware' => Authenticate::class], function () {
     Route::get('/analytics/longest-requests', 'AnalyticsController@longestRequests')->name('taivasapm.analytics.longest-requests');
 
     // Request detail view routes
-    Route::get('/requests/{requestId}', 'RequestController@show')->name('taivasapm.request');
-    Route::get('/requests/{requestId}/history', 'RequestController@history')->name('taivasapm.request.history');
+    Route::get('/requests', 'RequestController@index')->name('taivasapm.requests.index');
+    Route::get('/requests/{requestId}', 'RequestController@show')->name('taivasapm.requests.show');
+    Route::get('/requests/{requestId}/history', 'RequestController@history')->name('taivasapm.requests.history');
 });

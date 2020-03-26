@@ -7,6 +7,17 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use TaivasAPM\Tracking\Models\Request;
 
+/**
+ * A collection of request statistics grouped by day
+ * [
+ *     '2020-03-26' => [
+ *          'request_duration_avg' => 13,
+ *          'db_duration_avg' => 3,
+ *          ...
+ *      ],
+ *      ...
+ * ]
+ */
 class RequestHistory
 {
     private $days = 30;
