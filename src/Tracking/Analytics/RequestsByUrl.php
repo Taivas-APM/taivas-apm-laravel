@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 use TaivasAPM\Tracking\Models\Request;
 
 /**
- * All requests from the last x days grouped by request url
+ * All requests from the last x days grouped by request url.
  */
 class RequestsByUrl
 {
@@ -21,11 +21,12 @@ class RequestsByUrl
             ->orderBy('request_sum', 'DESC')
             ->get();
 
-        $data->transform(function($entry) {
-            $entry->request_duration_avg = (float)$entry->request_duration_avg;
-            $entry->db_duration_avg = (float)$entry->db_duration_avg;
-            $entry->memory_peak_avg = (float)$entry->memory_peak_avg;
-            $entry->request_sum = (int)$entry->request_sum;
+        $data->transform(function ($entry) {
+            $entry->request_duration_avg = (float) $entry->request_duration_avg;
+            $entry->db_duration_avg = (float) $entry->db_duration_avg;
+            $entry->memory_peak_avg = (float) $entry->memory_peak_avg;
+            $entry->request_sum = (int) $entry->request_sum;
+
             return $entry;
         });
 
