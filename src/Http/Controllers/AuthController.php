@@ -10,7 +10,6 @@ use Illuminate\Support\Str;
 use Lcobucci\JWT\Builder;
 use Lcobucci\JWT\Signer\Hmac\Sha256;
 use Lcobucci\JWT\Signer\Key;
-use Lcobucci\JWT\Token;
 use TaivasAPM\TaivasAPM;
 
 class AuthController extends Controller
@@ -54,7 +53,7 @@ class AuthController extends Controller
             ->identifiedBy(Str::random(32)) // Configures the id (jti claim)
             ->issuedAt($time) // Configures the time that the token was issue (iat claim)
             ->canOnlyBeUsedAfter($time) // Configures the time that the token can be used (nbf claim)
-            ->expiresAt($time + 3600) // Configures the expiration time of the token (exp claim)
+            ->expiresAt($time + config('taivasapm.auth.lifetime')) // Configures the expiration time of the token (exp claim)
             ->relatedTo($user->getAuthIdentifier()) // Sets the user this token is fore (sub claim)
             ->getToken($signer, new Key(config('taivasapm.secret')));
 
