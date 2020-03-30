@@ -5,7 +5,6 @@ namespace TaivasAPM\Tracking;
 use Illuminate\Contracts\Redis\Factory;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\DB;
 use TaivasAPM\LuaScripts;
 
 class Persister
@@ -49,7 +48,8 @@ class Persister
         ];
     }
 
-    private function queueViaRedis($requestData) {
+    private function queueViaRedis($requestData)
+    {
         $this->redis->connection()->rpush('taivasapm:queue', serialize($requestData));
     }
 
@@ -64,11 +64,11 @@ class Persister
         $connection = $this->redis->connection();
         $listLength = $connection->llen($listKey);
         $chunkSize = 100;
-        for($i=0;$i < ceil($listLength/$chunkSize);$i++) {
+        for ($i = 0; $i < ceil($listLength / $chunkSize); $i++) {
             $items = $connection->eval(LuaScripts::lpopMany(), 1, $listKey, $chunkSize);
             $items = collect($items);
             $listLength = $connection->llen($listKey);
-            $items->transform(function($item) {
+            $items->transform(function ($item) {
                 return unserialize($item);
             });
             $this->persistItems($items);
@@ -78,9 +78,10 @@ class Persister
     private function persistItems(Collection $items)
     {
         $now = date('Y-m-d H:i:s');
-        $items->transform(function($item) use ($now) {
+        $items->transform(function ($item) use ($now) {
             $item['created_at'] = $now;
             $item['updated_at'] = $now;
+
             return $item;
         });
         \TaivasAPM\Tracking\Models\Request::insert($items->toArray());
