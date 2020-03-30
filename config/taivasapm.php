@@ -36,7 +36,7 @@ return [
     |--------------------------------------------------------------------------
     */
     'tracking' => [
-        'persistence_driver' => 'sync'
+        'persistence_driver' => 'sync',
     ],
 
     /*
