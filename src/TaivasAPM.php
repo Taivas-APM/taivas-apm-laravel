@@ -65,7 +65,7 @@ class TaivasAPM
      */
     public static function getGuard()
     {
-        $guard = config('taivasapm.auth.guard');
+        $guard = config('taivasapm.api.auth.guard');
         if (! $guard) {
             $guard = config('auth.defaults.guard');
         }

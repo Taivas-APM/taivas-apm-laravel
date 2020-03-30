@@ -21,9 +21,13 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $credentials = [
-            config('taivasapm.auth.identifier') => $request->get('email'),
+            config('taivasapm.api.auth.identifier') => $request->get('email'),
             'password' => $request->get('password'),
         ];
+
+        if(!config('taivasapm.secret')) {
+            return app()->abort(403, 'No secret is set. Please set the JWT_SECRET environment variable (see config/taivasapm.php).');
+        }
 
         $auth = auth(TaivasAPM::getGuard());
         if (! $auth->attempt($credentials)) {
@@ -53,7 +57,7 @@ class AuthController extends Controller
             ->identifiedBy(Str::random(32)) // Configures the id (jti claim)
             ->issuedAt($time) // Configures the time that the token was issue (iat claim)
             ->canOnlyBeUsedAfter($time) // Configures the time that the token can be used (nbf claim)
-            ->expiresAt($time + config('taivasapm.auth.lifetime')) // Configures the expiration time of the token (exp claim)
+            ->expiresAt($time + config('taivasapm.api.auth.lifetime')) // Configures the expiration time of the token (exp claim)
             ->relatedTo($user->getAuthIdentifier()) // Sets the user this token is fore (sub claim)
             ->getToken($signer, new Key(config('taivasapm.secret')));
 

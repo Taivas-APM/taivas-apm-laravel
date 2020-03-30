@@ -34,14 +34,16 @@ class TaivasAPMServiceProvider extends ServiceProvider
 
         $this->configure();
         $this->offerPublishing();
+        $this->registerCommands();
 
-        $this->app->singleton('tracker', function ($app) {
+        $this->app->singleton('taivas.tracker', function ($app) {
             $tracker = new Tracker();
 
             return $tracker;
         });
-        $this->app->singleton('tracker.persister', function ($app) {
-            $persister = new Persister();
+        $this->app->singleton('taivas.persister', function ($app) {
+            $redis = $app['redis'];
+            $persister = new Persister($redis);
 
             return $persister;
         });
@@ -103,6 +105,20 @@ class TaivasAPMServiceProvider extends ServiceProvider
             $this->publishes([
                 __DIR__.'/../config/taivasapm.php' => config_path('taivasapm.php'),
             ], 'taivasapm-config');
+        }
+    }
+
+    /**
+     * Register the Taivas Artisan commands.
+     *
+     * @return void
+     */
+    protected function registerCommands()
+    {
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                Console\PersistCommand::class,
+            ]);
         }
     }
 }

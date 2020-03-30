@@ -30,7 +30,7 @@ class TrackerMiddleware
     public function handle($request, Closure $next)
     {
         /** @var Tracker $tracker */
-        $tracker = $this->app['tracker'];
+        $tracker = $this->app['taivas.tracker'];
         if ($tracker->shouldTrack($request)) {
             $tracker->start($request);
         }
@@ -44,13 +44,13 @@ class TrackerMiddleware
     public function terminate($request)
     {
         /** @var Tracker $tracker */
-        $tracker = $this->app['tracker'];
+        $tracker = $this->app['taivas.tracker'];
         if ($tracker->shouldTrack($request)) {
             $tracker->stop();
             $tracker->logDBQueries();
 
             /** @var Persister $persister */
-            $persister = $this->app['tracker.persister'];
+            $persister = $this->app['taivas.persister'];
             $persister->persist($tracker->getRequest());
         }
     }
