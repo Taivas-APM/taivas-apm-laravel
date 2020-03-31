@@ -37,7 +37,7 @@ return [
     */
     'tracking' => [
         'persistence_driver' => env('TAIVAS_PERSISTENCE_DRIVER', 'sync'),
-        'lottery' => env('TAIVAS_TRACKING_LOTTERY', 10), // The percentage of requests to track
+        'lottery' => env('TAIVAS_TRACKING_LOTTERY', 100), // The percentage of requests to track
     ],
 
     /*
