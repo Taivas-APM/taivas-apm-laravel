@@ -15,7 +15,7 @@ class Tracker
      */
     public function shouldTrack($request)
     {
-        return ! Str::startsWith($request->getPathInfo(), '/taivasapm/');
+        return ! Str::startsWith($request->getPathInfo(), '/' . config('taivasapm.api.prefix') .'/');
     }
 
     /**

@@ -37,6 +37,12 @@ php artisan tinker
 Str::random(32)
 ```
 
+Execute the taivas migrations to create a table to store the request data
+
+```bash
+php artisan migrate
+```
+
 If your cors configuration is not open, allow access from our hosted web app in your cors config file (config/cors.php):
 
 ```
@@ -59,6 +65,7 @@ Enter your domain and login with the user credentials from your own application.
 
 ## :sailboat: Roadmap
  * [ ] Specifying a non-default redis connection
+ * [ ] Combine the `shouldTrack` logic from the Service Provider and the Tracker class
  * [ ] Automatic tests for all supported Laravel Versions
  * [ ] Custom analytics support
  * [ ] ClickHouse support

@@ -14,7 +14,7 @@ class CreateTrackingRequestsTable extends Migration
     public function up()
     {
         Schema::create('tracking_requests', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->string('url')->index('url');
             $table->dateTime('started_at')->index('started_at');
             $table->dateTime('stopped_at');
