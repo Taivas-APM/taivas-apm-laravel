@@ -1,6 +1,6 @@
 <?php
 
-namespace TaivasAPM\Tracking;
+namespace TaivasAPM\Http\Middleware;
 
 use Closure;
 use Illuminate\Contracts\Foundation\Application;

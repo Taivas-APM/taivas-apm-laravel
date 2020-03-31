@@ -1,10 +1,10 @@
 <?php
 
-namespace TaivasAPM\Tracking\Analytics;
+namespace TaivasAPM\Analytics;
 
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
-use TaivasAPM\Tracking\Models\Request;
+use TaivasAPM\Models\Request;
 
 /**
  * All requests from the last x days grouped by request url.

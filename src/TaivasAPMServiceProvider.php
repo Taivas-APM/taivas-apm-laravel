@@ -6,9 +6,9 @@ use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
+use TaivasAPM\Http\Middleware\TrackerMiddleware;
 use TaivasAPM\Tracking\Persister;
 use TaivasAPM\Tracking\Tracker;
-use TaivasAPM\Tracking\TrackerMiddleware;
 
 class TaivasAPMServiceProvider extends ServiceProvider
 {

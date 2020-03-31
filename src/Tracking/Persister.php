@@ -84,6 +84,6 @@ class Persister
 
             return $item;
         });
-        \TaivasAPM\Tracking\Models\Request::insert($items->toArray());
+        \TaivasAPM\Models\Request::insert($items->toArray());
     }
 }

@@ -4,9 +4,9 @@ namespace TaivasAPM\Http\Controllers;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Response;
-use TaivasAPM\Tracking\Analytics\LastRequests;
-use TaivasAPM\Tracking\Analytics\LongestRequests;
-use TaivasAPM\Tracking\Analytics\RecentRequests;
+use TaivasAPM\Analytics\LastRequests;
+use TaivasAPM\Analytics\LongestRequests;
+use TaivasAPM\Analytics\RecentRequests;
 
 class AnalyticsController extends Controller
 {

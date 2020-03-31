@@ -1,6 +1,6 @@
 <?php
 
-namespace TaivasAPM\Tracking\Models;
+namespace TaivasAPM\Models;
 
 use Illuminate\Database\Eloquent\Model;
 

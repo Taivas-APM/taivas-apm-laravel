@@ -1,11 +1,11 @@
 <?php
 
-namespace TaivasAPM\Tracking\Analytics;
+namespace TaivasAPM\Analytics;
 
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
-use TaivasAPM\Tracking\Models\Request;
+use TaivasAPM\Models\Request;
 
 class LongestRequests
 {

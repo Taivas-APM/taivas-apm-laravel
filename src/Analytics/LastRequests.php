@@ -1,9 +1,9 @@
 <?php
 
-namespace TaivasAPM\Tracking\Analytics;
+namespace TaivasAPM\Analytics;
 
 use Illuminate\Database\Eloquent\Collection;
-use TaivasAPM\Tracking\Models\Request;
+use TaivasAPM\Models\Request;
 
 class LastRequests
 {
