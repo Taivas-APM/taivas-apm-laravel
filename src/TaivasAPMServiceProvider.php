@@ -131,13 +131,14 @@ class TaivasAPMServiceProvider extends ServiceProvider
 
     protected function shouldLogRequest()
     {
-       if($this->shouldLog === null) {
-           if(!config('taivasapm.enabled')) {
-               $this->shouldLog = false;
-           } else {
-               $this->shouldLog = rand(1, 100) <= intval(config('taivasapm.tracking.lottery'));
-           }
-       }
-       return $this->shouldLog;
+        if ($this->shouldLog === null) {
+            if (! config('taivasapm.enabled')) {
+                $this->shouldLog = false;
+            } else {
+                $this->shouldLog = rand(1, 100) <= intval(config('taivasapm.tracking.lottery'));
+            }
+        }
+
+        return $this->shouldLog;
     }
 }
