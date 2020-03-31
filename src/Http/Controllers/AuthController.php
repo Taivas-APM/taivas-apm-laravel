@@ -25,8 +25,8 @@ class AuthController extends Controller
             'password' => $request->get('password'),
         ];
 
-        if (! config('taivasapm.secret')) {
-            return app()->abort(403, 'No secret is set. Please set the JWT_SECRET environment variable (see config/taivasapm.php).');
+        if(! config('taivasapm.secret')) {
+            return app()->abort(403, 'No secret is set. Please set the TAIVAS_SECRET environment variable (see config/taivasapm.php).');
         }
 
         $auth = auth(TaivasAPM::getGuard());

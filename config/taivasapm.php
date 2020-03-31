@@ -8,7 +8,7 @@ return [
     | Enable / Disable request data collection
     |--------------------------------------------------------------------------
     */
-    'enabled' => true,
+    'enabled' => env('TAIVAS_ENABLED', true),
 
     /*
     |--------------------------------------------------------------------------
@@ -18,7 +18,7 @@ return [
     | Str::random(32)
     |--------------------------------------------------------------------------
     */
-    'secret' => env('JWT_SECRET'),
+    'secret' => env('TAIVAS_SECRET'),
 
     /*
     |--------------------------------------------------------------------------
@@ -36,7 +36,8 @@ return [
     |--------------------------------------------------------------------------
     */
     'tracking' => [
-        'persistence_driver' => 'sync',
+        'persistence_driver' => env('TAIVAS_PERSISTENCE_DRIVER', 'sync'),
+        'lottery' => env('TAIVAS_TRACKING_LOTTERY', 10), // The percentage of requests to track
     ],
 
     /*

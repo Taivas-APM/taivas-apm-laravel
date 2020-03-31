@@ -30,7 +30,7 @@ Publish the configuration:
 php artisan vendor:publish --provider="TaivasAPM\TaivasAPMServiceProvider"
 ```
 
-Set the JWT_SECRET key in your .env file. To do that, create a random string with tinker:
+Set the TAIVAS_SECRET key in your .env file. To do that, create a random string with tinker:
 
 ```bash
 php artisan tinker

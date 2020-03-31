@@ -12,6 +12,8 @@ use TaivasAPM\Tracking\TrackerMiddleware;
 
 class TaivasAPMServiceProvider extends ServiceProvider
 {
+    private $shouldLog = null;
+
     /**
      * Bootstrap any application services.
      *
@@ -19,7 +21,10 @@ class TaivasAPMServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        DB::connection()->enableQueryLog();
+        if ($this->shouldLogRequest()) {
+            // Enable query logging as soon as possible
+            DB::connection()->enableQueryLog();
+        }
 
         $this->registerMiddleware();
         $this->registerRoutes();
@@ -51,8 +56,10 @@ class TaivasAPMServiceProvider extends ServiceProvider
 
     private function registerMiddleware()
     {
-        $this->app[Kernel::class]
-            ->prependMiddleware(TrackerMiddleware::class);
+        if ($this->shouldLogRequest()) {
+            $this->app[Kernel::class]
+                ->prependMiddleware(TrackerMiddleware::class);
+        }
     }
 
     /**
@@ -120,5 +127,17 @@ class TaivasAPMServiceProvider extends ServiceProvider
                 Console\PersistCommand::class,
             ]);
         }
+    }
+
+    protected function shouldLogRequest()
+    {
+       if($this->shouldLog === null) {
+           if(!config('taivasapm.enabled')) {
+               $this->shouldLog = false;
+           } else {
+               $this->shouldLog = rand(1, 100) <= intval(config('taivasapm.tracking.lottery'));
+           }
+       }
+       return $this->shouldLog;
     }
 }
