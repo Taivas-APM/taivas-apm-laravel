@@ -38,8 +38,8 @@ class Persister
     {
         return [
             'url' => $request->getUrl(),
-            'started_at' => Carbon::createFromFormat('U.v', $request->getStartedAt() / 1000)->format('Y-m-d H:i:s'),
-            'stopped_at' => Carbon::createFromFormat('U.v', $request->getStoppedAt() / 1000)->format('Y-m-d H:i:s'),
+            'started_at' => Carbon::createFromFormat('U.v', $request->getStartedAt())->format('Y-m-d H:i:s'),
+            'stopped_at' => Carbon::createFromFormat('U.v', $request->getStoppedAt())->format('Y-m-d H:i:s'),
             'request_duration' => intval($request->getRequestDuration()),
             'db_duration' => intval($request->getDBDuration()),
             'db_count' => $request->getDBCount(),

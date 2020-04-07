@@ -48,7 +48,7 @@ class Authenticate
      * @param Request $request
      * @return Token|null
      */
-    private function getToken($request)
+    protected function getToken($request)
     {
         $header = $request->header('Authorization');
         if ($header && preg_match('/Bearer\s*(\S+)\b/i', $header, $matches)) {
@@ -62,7 +62,7 @@ class Authenticate
      * @param Token $token
      * @return bool
      */
-    private function tokenIsValid($token)
+    protected function tokenIsValid($token)
     {
         $validation = new ValidationData();
         $validation->setIssuer('https://taivas.io');
@@ -83,7 +83,7 @@ class Authenticate
      * @param Token $token
      * @return Authenticatable|null
      */
-    private function getUser($token)
+    protected function getUser($token)
     {
         $providerName = config('auth.guards.'.TaivasAPM::getGuard().'.provider');
         /** @var AuthManager $authManager */

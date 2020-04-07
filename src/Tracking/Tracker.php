@@ -23,13 +23,13 @@ class Tracker
      */
     public function start($request)
     {
-        $this->getRequest()->setStartedAt(microtime(true) * 1000);
+        $this->getRequest()->setStartedAt(microtime(true));
         $this->getRequest()->setUrl($request->getUri());
     }
 
     public function stop()
     {
-        $this->getRequest()->setStoppedAt(microtime(true) * 1000);
+        $this->getRequest()->setStoppedAt(microtime(true));
         $this->getRequest()->setMaxMemory(memory_get_peak_usage(true));
     }
 

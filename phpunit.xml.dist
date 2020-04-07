@@ -26,5 +26,9 @@
     </filter>
     <php>
         <server name="REDIS_CLIENT" value="predis"/>
+        <server name="APP_KEY" value="base64:aDhxQXEwd2MwWld6cVFMbWxBV3B4ZXBZMlM2NUxRNlEK"/>
+        <server name="TAIVAS_SECRET" value="h8qAq0wc0ZWzqQLmlAWpxepY2S65LQ6Q"/>
+        <server name="DB_CONNECTION" value="sqlite" />
+        <server name="DB_DATABASE" value=":memory:" />
     </php>
 </phpunit>

@@ -4,6 +4,8 @@ namespace TaivasAPM\Http\Middleware;
 
 use Closure;
 use Illuminate\Contracts\Foundation\Application;
+use TaivasAPM\Tracking\Persister;
+use TaivasAPM\Tracking\Tracker;
 
 class TrackerMiddleware
 {
