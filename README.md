@@ -2,6 +2,8 @@
   Taivas APM
 </h1>
 
+[![Build Status](https://travis-ci.com/Taivas-APM/taivas-apm-laravel.svg?branch=master)](https://travis-ci.com/Taivas-APM/taivas-apm-laravel)
+
 <p align="center">
   <strong>Taivas is an Application Performance Monitoring (APM) software for Laravel. :bar_chart:</strong>
 </p>
@@ -14,8 +16,7 @@ which requests to optimize and provides many graphs about your application's per
 ## :star: Highlights
  - Super easy to install (takes ~5 minutes)
  - Free [hosted frontend](https://app.taivas.io) so you don't have to setup it yourself
- - Extremely low performance impact. The redis persister adds only about 0.5ms to each request.
-
+ - Extremely high performance. The redis persister adds only about 0.5ms to each request.
 
 ## :rocket: Installation
 Require this package in the `composer.json` of your Laravel project.

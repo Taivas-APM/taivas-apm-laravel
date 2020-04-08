@@ -14,6 +14,7 @@ use Orchestra\Testbench\TestCase;
 use TaivasAPM\Http\Middleware\Authenticate;
 use TaivasAPM\Models\Request;
 use TaivasAPM\TaivasAPM;
+use TaivasAPM\TaivasAPMApplicationServiceProvider;
 use TaivasAPM\TaivasAPMServiceProvider;
 use TaivasAPM\Tests\Controller\Fakes\User;
 use TaivasAPM\Tracking\Persister;
@@ -101,6 +102,7 @@ abstract class IntegrationTest extends TestCase
     {
         return [
             TaivasAPMServiceProvider::class,
+            TaivasAPMApplicationServiceProvider::class,
         ];
     }
 }
