@@ -2,7 +2,6 @@
 
 namespace TaivasAPM\Tests;
 
-use Illuminate\Auth\EloquentUserProvider;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Str;
@@ -12,7 +11,6 @@ use Lcobucci\JWT\Signer\Key;
 use Mockery;
 use Orchestra\Testbench\TestCase;
 use TaivasAPM\Http\Middleware\Authenticate;
-use TaivasAPM\Models\Request;
 use TaivasAPM\TaivasAPM;
 use TaivasAPM\TaivasAPMApplicationServiceProvider;
 use TaivasAPM\TaivasAPMServiceProvider;
@@ -21,8 +19,6 @@ use TaivasAPM\Tracking\Persister;
 
 abstract class IntegrationTest extends TestCase
 {
-
-
     /**
      * Setup the test case.
      *
@@ -94,7 +90,8 @@ abstract class IntegrationTest extends TestCase
             ->getToken($signer, new Key(config('taivasapm.secret')));
 
         $token = $token->__toString();
-        $this->defaultHeaders = ['Authorization' => 'Bearer ' . $token];
+        $this->defaultHeaders = ['Authorization' => 'Bearer '.$token];
+
         return $this;
     }
 

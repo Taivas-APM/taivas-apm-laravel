@@ -9,9 +9,10 @@ use TaivasAPM\Models\Request;
 class PersistRequestTest extends AbstractControllerTest
 {
     use RefreshDatabase;
+
     public function test_request_data_is_persisted()
     {
-        Route::get('/test', function() {
+        Route::get('/test', function () {
             return 1;
         });
 

@@ -2,9 +2,7 @@
 
 namespace TaivasAPM\Tests\Controller;
 
-use Illuminate\Auth\EloquentUserProvider;
 use TaivasAPM\TaivasAPM;
-use TaivasAPM\Tests\Controller\Fakes\User;
 use TaivasAPM\Tests\IntegrationTest;
 
 abstract class AbstractControllerTest extends IntegrationTest

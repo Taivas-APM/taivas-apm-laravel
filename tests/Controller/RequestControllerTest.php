@@ -8,6 +8,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 class RequestControllerTest extends AbstractControllerTest
 {
     use RefreshDatabase;
+
     public function test_the_request_list_api_returns_correct_results()
     {
         $this->persistARequest();
@@ -24,8 +25,8 @@ class RequestControllerTest extends AbstractControllerTest
                     'db_duration_avg',
                     'memory_peak_avg',
                     'request_sum',
-                ]
-            ]
+                ],
+            ],
         ]);
     }
 
@@ -49,7 +50,7 @@ class RequestControllerTest extends AbstractControllerTest
                 'memory_peak',
                 'created_at',
                 'updated_at',
-            ]
+            ],
         ]);
     }
 
@@ -69,8 +70,8 @@ class RequestControllerTest extends AbstractControllerTest
                     'db_duration_avg',
                     'memory_peak_avg',
                     'request_sum',
-                ]
-            ]
+                ],
+            ],
         ]);
     }
 }
