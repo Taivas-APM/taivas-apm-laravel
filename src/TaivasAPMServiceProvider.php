@@ -82,6 +82,7 @@ class TaivasAPMServiceProvider extends ServiceProvider
     protected function registerRoutes()
     {
         Route::group([
+            'middleware' => 'taivas',
             'prefix' => config('taivasapm.api.prefix'),
             'namespace' => 'TaivasAPM\Http\Controllers',
         ], function () {
